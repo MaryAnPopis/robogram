@@ -43,7 +43,7 @@ class Profile extends Component {
   }
   render() {
     return (
-      <div>
+      <Styles.Profile>
         {this.state.checkData == undefined ? (
           <Redirect to="/" />
         ) : (
@@ -55,7 +55,7 @@ class Profile extends Component {
           username={this.state.username}
           id={this.state.id}
         />
-      </div>
+      </Styles.Profile>
     );
   }
 }
@@ -72,4 +72,6 @@ export default Profile;
 
 const Styles = {};
 
-Styles.Profile = styled.div``;
+Styles.Profile = styled.div`
+  background-color: #fafafa;
+`;
