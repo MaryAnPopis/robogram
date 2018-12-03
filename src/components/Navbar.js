@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 const Navbar = props => {
   return (
-    <nav className="navbar navbar-light bg-light">
+    <nav className="navbar navbar-light bg-white">
       <Link to={props.url}>
         <img
           src=""
