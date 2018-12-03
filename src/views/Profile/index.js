@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import { Redirect } from "react-router-dom";
 
 import { getById } from "../../services";
 import Navbar from "../../components/Navbar";
@@ -16,20 +17,25 @@ class Profile extends Component {
       username: "",
       email: "",
       avatar: "",
-      fetchInProgress: true
+      fetchInProgress: true,
+      checkData: ""
     };
   }
   componentDidMount() {
     let urlId = this.state.id;
     getById("users", urlId)
       .then(data => {
-        this.setState({
-          name: data.fullname,
-          username: data.username,
-          email: data.email,
-          avatar: data.avatar,
-          fetchInProgress: false
-        });
+        if (data == undefined) {
+          this.setState({ checkData: data });
+        } else {
+          this.setState({
+            fetchInProgress: false,
+            name: data.fullname,
+            username: data.username,
+            email: data.email,
+            avatar: data.avatar
+          });
+        }
       })
       .catch(err => {
         throw err;
@@ -38,7 +44,11 @@ class Profile extends Component {
   render() {
     return (
       <div>
-        {this.state.fetchInProgress && <Loader />}
+        {this.state.checkData == undefined ? (
+          <Redirect to="/" />
+        ) : (
+          this.state.fetchInProgress && <Loader />
+        )}
         <Navbar url={`/profile/${this.state.id}`} />
         <ProfileHeader
           imgSrc={this.state.avatar}
