@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 import globalVariables from "../../styles/variables";
 import { Label } from "../../components/Label";
@@ -27,7 +28,7 @@ class Login extends Component {
       <Styles.Login>
         <AvatarLogin />
         <Styles.Title className="text-center mt-3">Welcome back!</Styles.Title>
-        <Styles.Subtitle className="text-center mb-5">
+        <Styles.Subtitle className="text-center mb-3">
           Log in to continue
         </Styles.Subtitle>
         <form onSubmit={this.handleSubmit.bind(this)}>
@@ -55,10 +56,28 @@ class Login extends Component {
               onChange={e => this.handleChange(e)}
             />
           </div>
-          <Button name="Sign in" className="btn btn-block" />
-          <small className="text-center">
-            Not a member yet? <a href="/signup">Sign up</a>
-          </small>
+          <div className="row">
+            <div className="col-md-6">
+              <Button name="Sign in" className="btn btn-block mb-2" />
+            </div>
+            <div className="col-md-6">
+              <Styles.SecondaryButton
+                to="/signup"
+                className="btn btn-outline-dark btn-block"
+              >
+                Create profile
+              </Styles.SecondaryButton>
+            </div>
+          </div>
+          {/* {<small className="text-center">
+            Not a member yet?{" "}
+            <Styles.SecondaryButton
+              to="/signup"
+              className="btn btn-outline-dark"
+            >
+              Sign up
+            </Styles.SecondaryButton>
+          </small>} */}
         </form>
       </Styles.Login>
     );
@@ -86,4 +105,17 @@ Styles.Subtitle = styled.h3`
 Styles.Input = styled.input`
   border-color: ${globalVariables.darkblue} !important;
   border-width: 1.2px;
+`;
+
+Styles.SecondaryButton = styled(Link)`
+  border-color: ${globalVariables.darkblue} !important;
+  border-width: 1px;
+  color: ${globalVariables.darkblue};
+  text-align: center;
+  &:hover {
+    background-color: ${globalVariables.darkblue};
+  }
+  &:focus {
+    background-color: ${globalVariables.darkblue};
+  }
 `;
