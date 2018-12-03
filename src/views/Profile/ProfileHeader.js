@@ -7,7 +7,7 @@ import globalVariables from "../../styles/variables";
 
 export const ProfileHeader = props => {
   return (
-    <Styles.Profile className="container mt-3">
+    <div className="container mt-3 ">
       <Styles.Row className="row">
         <div className="col-md-3" />
         <div className="col-md-3">
@@ -26,7 +26,7 @@ export const ProfileHeader = props => {
         </div>
         <div className="col-md-3" />
       </Styles.Row>
-    </Styles.Profile>
+    </div>
   );
 };
 
@@ -38,19 +38,17 @@ ProfileHeader.propTypes = {
 
 const Styles = {};
 
-Styles.Profile = styled.div``;
-
 Styles.Img = styled.img`
-  background: #a1ffce; /* fallback for old browsers */
+  background: #ff6e7f; /* fallback for old browsers */
   background: -webkit-linear-gradient(
     to right,
-    #faffd1,
-    #a1ffce
+    #bfe9ff,
+    #ff6e7f
   ); /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(
     to right,
-    #faffd1,
-    #a1ffce
+    #bfe9ff,
+    #ff6e7f
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
   clip-path: circle(60px at center);
