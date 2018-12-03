@@ -69,15 +69,6 @@ class Login extends Component {
               </Styles.SecondaryButton>
             </div>
           </div>
-          {/* {<small className="text-center">
-            Not a member yet?{" "}
-            <Styles.SecondaryButton
-              to="/signup"
-              className="btn btn-outline-dark"
-            >
-              Sign up
-            </Styles.SecondaryButton>
-          </small>} */}
         </form>
       </Styles.Login>
     );
@@ -109,9 +100,10 @@ Styles.Input = styled.input`
 
 Styles.SecondaryButton = styled(Link)`
   border-color: ${globalVariables.darkblue} !important;
-  border-width: 1px;
+  border-width: 1.4px;
   color: ${globalVariables.darkblue};
   text-align: center;
+  font-weight: 400;
   &:hover {
     background-color: ${globalVariables.darkblue};
   }
