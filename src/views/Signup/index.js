@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import globalVariables from "../../styles/variables";
 import { ToastContainer, toast } from "react-toastify";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 
 import { post } from "../../services";
 import { Button } from "../../components/Button";
@@ -81,10 +81,10 @@ class SignUp extends Component {
     // prevent the form submmiting on its own
     event.preventDefault();
     let usernameLowecase = this.state.username;
-    usernameLowecase.toLowerCase();
+
     let data = {
       fullname: this.state.name,
-      username: usernameLowecase,
+      username: usernameLowecase.toLowerCase(),
       password: this.state.password,
       email: this.state.email,
       avatar: `https://robohash.org/${usernameLowecase}?size=150x150`
@@ -190,9 +190,9 @@ class SignUp extends Component {
               </small>
             )}
           </div>
-          <Button name="Sign up" className="btn btn-block" />
+          <Button name="Sign up" className="btn btn-block mb-3" />
           <small className="text-center">
-            Already a member? <a href="/">Sign in</a>
+            Already a member? <Link to="/">Sign in</Link>
           </small>
         </form>
       </Styles.Login>
