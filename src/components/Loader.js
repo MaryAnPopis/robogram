@@ -5,7 +5,34 @@ class Loader extends Component {
   render() {
     return (
       <Styles.Div>
-        <h1>Loading...</h1>
+        <Styles.SVG viewBox="0 0 100 100">
+          <circle
+            fill="none"
+            stroke="#292136"
+            strokeWidth={4}
+            cx={50}
+            cy={50}
+            r={44}
+            opacity={0.5}
+          />
+          <circle
+            fill="#292136"
+            stroke="#292136"
+            strokeWidth={3}
+            cx={8}
+            cy={54}
+            r={6}
+          >
+            <animateTransform
+              attributeName="transform"
+              dur="2s"
+              type="rotate"
+              from="0 50 48"
+              to="360 50 52"
+              repeatCount="indefinite"
+            />
+          </circle>
+        </Styles.SVG>
       </Styles.Div>
     );
   }
@@ -21,4 +48,11 @@ Styles.Div = styled.div`
   flex-direction: column;
   justify-content: center;
   text-align: center;
+`;
+
+Styles.SVG = styled.svg`
+  width: 100px;
+  height: 100px;
+  display: block;
+  margin: auto;
 `;
