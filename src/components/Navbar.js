@@ -1,9 +1,11 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
-const Navbar = () => {
+const Navbar = props => {
   return (
     <nav className="navbar navbar-light bg-light">
-      <a className="navbar-brand ml-5" href="/">
+      <Link to={props.url}>
         <img
           src=""
           width="30"
@@ -12,9 +14,13 @@ const Navbar = () => {
           alt=""
         />
         | Robogram
-      </a>
+      </Link>
     </nav>
   );
 };
 
 export default Navbar;
+
+Navbar.propTypes = {
+  url: PropTypes.string
+};
