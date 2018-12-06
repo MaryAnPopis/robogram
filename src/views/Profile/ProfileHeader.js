@@ -76,5 +76,5 @@ Styles.SecondaryButton = styled(Link)`
 `;
 
 Styles.Row = styled.div`
-  border-bottom: 1px solid rgb(167, 167, 167, 0.3);
+  border-bottom: 1.4px solid rgb(167, 167, 167, 0.3);
 `;
