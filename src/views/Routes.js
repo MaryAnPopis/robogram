@@ -6,7 +6,7 @@ import SignUp from "./Signup";
 import Profile from "./Profile";
 import Error from "./Error";
 
-const Main = () => (
+const Routes = () => (
   <main>
     <Switch>
       <Route exact path="/" component={Login} />
@@ -17,4 +17,4 @@ const Main = () => (
   </main>
 );
 
-export default Main;
+export default Routes;

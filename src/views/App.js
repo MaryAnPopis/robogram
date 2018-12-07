@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 
-import Main from "./Main";
+import Routes from "./Routes";
 
 class App extends Component {
   render() {
     return (
       <Styles.Container>
-        <Main />
+        <Routes />
       </Styles.Container>
     );
   }
