@@ -5,6 +5,7 @@ import Login from "./Login";
 import SignUp from "./Signup";
 import Profile from "./Profile";
 import Error from "./Error";
+import AddPost from "./AddPost";
 
 const Routes = () => (
   <main>
@@ -12,6 +13,7 @@ const Routes = () => (
       <Route exact path="/" component={Login} />
       <Route path="/signup" component={SignUp} />
       <Route path="/profile/:id" component={Profile} />
+      <Route path="/post/:idUser" component={AddPost} />
       <Route component={Error} />
     </Switch>
   </main>

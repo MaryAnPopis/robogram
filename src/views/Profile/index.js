@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 
+import globalVariables from "../../styles/variables";
 import { getById } from "../../services";
 import Navbar from "../../components/Navbar";
 import Loader from "../../components/Loader";
@@ -80,6 +81,12 @@ class Profile extends Component {
           username={this.state.username}
           id={this.state.id}
         />
+        <Styles.SecondaryButton
+          to={`/post/${this.state.id}`}
+          className="btn btn-outline-dark "
+        >
+          Add post
+        </Styles.SecondaryButton>
         <div className="container">
           <div className="row">
             {posts.map(post => {
@@ -120,4 +127,17 @@ Styles.box = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+`;
+Styles.SecondaryButton = styled(Link)`
+  border-color: ${globalVariables.darkblue} !important;
+  border-width: 1.4px;
+  color: ${globalVariables.darkblue};
+  text-align: center;
+  font-weight: 400;
+  &:hover {
+    background-color: ${globalVariables.darkblue};
+  }
+  &:focus {
+    background-color: ${globalVariables.darkblue};
+  }
 `;
