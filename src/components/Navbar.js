@@ -1,11 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import styled from "styled-components";
+
+import globalVariables from "../styles/variables";
 
 const Navbar = props => {
   return (
     <nav className="navbar navbar-light bg-white">
-      <Link to={props.url}>
+      <Styles.Link to={props.url}>
         <img
           src=""
           width="30"
@@ -14,7 +17,7 @@ const Navbar = props => {
           alt=""
         />
         | Robogram
-      </Link>
+      </Styles.Link>
     </nav>
   );
 };
@@ -24,3 +27,9 @@ export default Navbar;
 Navbar.propTypes = {
   url: PropTypes.string
 };
+
+const Styles = {};
+
+Styles.Link = styled(Link)`
+  color: ${globalVariables.darkblue} !important;
+`;
