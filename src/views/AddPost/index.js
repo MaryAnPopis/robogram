@@ -48,12 +48,12 @@ class AddPost extends Component {
   }
   render() {
     return (
-      <Styles.Profile className="mb-5">
+      <Styles.Profile>
         <Navbar url={`/profile/${this.state.idUser}`} />
         <div className="container">
           <div className="row">
             <div className="col-md-12 d-flex justify-content-center mt-5">
-              <Styles.FormContainer className="rounded shadow bg-white ">
+              <Styles.FormContainer className="rounded shadow bg-white mb-5">
                 <Styles.Title className="mb-4 d-flex justify-content-center p-2">
                   <h4>Add post</h4>
                 </Styles.Title>
