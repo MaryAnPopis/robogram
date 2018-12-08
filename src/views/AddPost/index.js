@@ -23,10 +23,10 @@ class AddPost extends Component {
     this.getFileKey = this.getFileKey.bind(this);
   }
 
-  onDrop(acceptedFiles) {
+  onDrop(acceptedFile) {
     this.setState({
-      img: acceptedFiles[0],
-      accepted: acceptedFiles.map(file =>
+      img: acceptedFile[0],
+      accepted: acceptedFile.map(file =>
         Object.assign(file, { preview: URL.createObjectURL(file) })
       )
     });
@@ -66,6 +66,7 @@ class AddPost extends Component {
                       onDragOver={(...args) => {
                         [...args];
                       }}
+                      multiple={false}
                     >
                       {this.state.accepted.map(file => {
                         return (
@@ -109,6 +110,7 @@ class AddPost extends Component {
                       id="description"
                       rows="3"
                       placeholder="The best post ever 🤖"
+                      name="description"
                       onChange={e => this.handleChange(e)}
                     />
                   </div>
