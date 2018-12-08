@@ -99,7 +99,7 @@ class Profile extends Component {
                   className="col-md-4 mt-3 mb-4 d-flex justify-content-center"
                   key={post.id}
                 >
-                  <Post src={post.img} />
+                  <Post key={post.id} src={post.img} />
                 </div>
               );
             })}
