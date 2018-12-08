@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import Dropzone from "react-dropzone";
+import { ToastContainer, toast } from "react-toastify";
 
 import globalVariables from "../../styles/variables";
 import Navbar from "../../components/Navbar";
@@ -41,6 +42,24 @@ class AddPost extends Component {
     this.setState({ [name]: value });
   }
 
+  handleSubmit(event) {
+    // prevent the form submmiting on its own
+    event.preventDefault();
+
+    let data = {
+      idUser: this.state.idUser,
+      img: this.state.img,
+      description: this.state.description
+    };
+
+    console.log(data);
+
+    toast("🤖 The post was succesfully created", {
+      position: "bottom-right",
+      autoClose: 5000
+    });
+  }
+
   componentWillUnmount() {
     this.state.accepted.forEach(file => {
       window.URL.revokeObjectURL(file.preview);
@@ -49,6 +68,7 @@ class AddPost extends Component {
   render() {
     return (
       <Styles.Profile>
+        <ToastContainer />
         <Navbar url={`/profile/${this.state.idUser}`} />
         <div className="container">
           <div className="row">
@@ -57,7 +77,7 @@ class AddPost extends Component {
                 <Styles.Title className="mb-4 d-flex justify-content-center p-2">
                   <h4>Add post</h4>
                 </Styles.Title>
-                <form action="" className="p-4">
+                <form className="p-4" onSubmit={this.handleSubmit.bind(this)}>
                   <div className="mb-4">
                     <DropZone
                       ref={this.state.ref}
@@ -70,12 +90,17 @@ class AddPost extends Component {
                     >
                       {this.state.accepted.map(file => {
                         return (
-                          <img
+                          <div
                             key={file.name}
-                            src={file.preview}
-                            style={{ height: 150 }}
-                            alt=""
-                          />
+                            className="col-md-12 d-flex justify-content-center "
+                          >
+                            <img
+                              key={file.name}
+                              src={file.preview}
+                              style={{ height: 200 }}
+                              alt=""
+                            />
+                          </div>
                         );
                       })}
                       <div>
