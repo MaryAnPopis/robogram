@@ -81,12 +81,16 @@ class Profile extends Component {
           username={this.state.username}
           id={this.state.id}
         />
-        <Styles.SecondaryButton
-          to={`/post/${this.state.id}`}
-          className="btn btn-outline-dark "
-        >
-          Add post
-        </Styles.SecondaryButton>
+        <div className="container">
+          <div className="col-md-12 d-flex justify-content-end mt-3 mr-4">
+            <Styles.SecondaryButton
+              to={`/post/${this.state.id}`}
+              className="btn btn-outline-dark "
+            >
+              Add post
+            </Styles.SecondaryButton>
+          </div>
+        </div>
         <div className="container">
           <div className="row">
             {posts.map(post => {
@@ -129,6 +133,7 @@ Styles.box = styled.div`
   justify-content: center;
 `;
 Styles.SecondaryButton = styled(Link)`
+  padding: 0.1rem 0.75rem !important;
   border-color: ${globalVariables.darkblue} !important;
   border-width: 1.4px;
   color: ${globalVariables.darkblue};
