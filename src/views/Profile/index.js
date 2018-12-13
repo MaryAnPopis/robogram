@@ -9,6 +9,7 @@ import Navbar from "../../components/Navbar";
 import Loader from "../../components/Loader";
 import { ProfileHeader } from "./ProfileHeader";
 import { Post } from "./Post";
+import NoPosts from "../../components/NoPosts";
 
 class Profile extends Component {
   constructor(props) {
@@ -80,7 +81,11 @@ class Profile extends Component {
         </div>
         <div className="container">
           <div className="row">
-            {!this.state.fetchInProgress &&
+            {this.state.posts.length == 0 ? (
+              <div className="col-md-12 d-flex justify-content-center">
+                <NoPosts />
+              </div>
+            ) : (
               this.state.posts.map(post => {
                 return (
                   <div
@@ -90,7 +95,8 @@ class Profile extends Component {
                     <Post key={post.id} src={post.img} />
                   </div>
                 );
-              })}
+              })
+            )}
           </div>
         </div>
       </Styles.Profile>
