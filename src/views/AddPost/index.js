@@ -2,31 +2,35 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import Dropzone from "react-dropzone";
-import { ToastContainer, toast } from "react-toastify";
+
+import { Redirect } from "react-router-dom";
 
 import globalVariables from "../../styles/variables";
 import Navbar from "../../components/Navbar";
 import { Button } from "../../components/Button";
+import { upload, post } from "../../services";
+import Loader from "../../components/Loader";
 
 class AddPost extends Component {
   constructor(props) {
     super(props);
     this.state = {
       idUser: props.match.params.idUser,
-      img: "",
+      image: "",
       description: "",
-      fetchInProgress: true,
+      fetchInProgress: false,
       checkData: "",
       accepted: [],
       dragOverStatus: null,
-      ref: (this.ref = React.createRef())
+      ref: (this.ref = React.createRef()),
+      redirect: false
     };
     this.getFileKey = this.getFileKey.bind(this);
   }
 
   onDrop(acceptedFile) {
     this.setState({
-      img: acceptedFile[0],
+      image: acceptedFile[0],
       accepted: acceptedFile.map(file =>
         Object.assign(file, { preview: URL.createObjectURL(file) })
       )
@@ -45,19 +49,30 @@ class AddPost extends Component {
   handleSubmit(event) {
     // prevent the form submmiting on its own
     event.preventDefault();
-
-    let data = {
-      idUser: this.state.idUser,
-      img: this.state.img,
-      description: this.state.description
-    };
-
-    console.log(data);
-
-    toast("🤖 The post was succesfully created", {
-      position: "bottom-right",
-      autoClose: 5000
-    });
+    let uploadImage = this.state.image;
+    upload("post/image-upload", "image", uploadImage)
+      .then(data => {
+        this.setState({
+          fetchInProgress: true
+        });
+        return data.imageUrl;
+      })
+      .then(urlCreated => {
+        let postForm = {
+          userId: this.state.idUser,
+          img: urlCreated,
+          description: this.state.description
+        };
+        post("post", postForm).then(postData => {
+          this.setState({
+            redirect: true
+          });
+          postData.insertId;
+        });
+      })
+      .catch(err => {
+        throw err;
+      });
   }
 
   componentWillUnmount() {
@@ -68,7 +83,11 @@ class AddPost extends Component {
   render() {
     return (
       <Styles.Profile>
-        <ToastContainer />
+        {this.state.redirect ? (
+          <Redirect to={`/profile/${this.state.idUser}`} />
+        ) : (
+          this.state.fetchInProgress && <Loader />
+        )}
         <Navbar url={`/profile/${this.state.idUser}`} />
         <div className="container">
           <div className="row">
@@ -82,6 +101,7 @@ class AddPost extends Component {
                     <DropZone
                       ref={this.state.ref}
                       accept="image/*"
+                      maxSize={1000000}
                       onDrop={this.onDrop.bind(this)}
                       onDragOver={(...args) => {
                         [...args];
@@ -107,7 +127,9 @@ class AddPost extends Component {
                         <div
                           className="row mb-5 mt-5"
                           style={
-                            this.state.img == "" ? { display: "block" } : hidden
+                            this.state.image == ""
+                              ? { display: "block" }
+                              : hidden
                           }
                         >
                           <div className="col-md-12 d-flex justify-content-center ">
@@ -121,7 +143,7 @@ class AddPost extends Component {
                             </svg>
                           </div>
                           <div className="col-md-12 d-flex justify-content-center">
-                            <strong>Drag & drop an image</strong>
+                            <strong>Drag & drop an image 1mb max</strong>
                           </div>
                         </div>
                       </div>

@@ -44,29 +44,40 @@ class Profile extends Component {
       email: "",
       avatar: "",
       fetchInProgress: true,
-      checkData: ""
+      checkData: "",
+      posts: []
     };
   }
   componentDidMount() {
     let urlId = this.state.id;
     getById("users", urlId)
       .then(data => {
-        if (data == undefined) {
-          this.setState({ checkData: data });
+        if (data[0] == undefined) {
+          this.setState({ checkData: data[0] });
         } else {
           this.setState({
-            fetchInProgress: false,
-            name: data.fullname,
-            username: data.username,
-            email: data.email,
-            avatar: data.avatar
+            name: data[0].fullname,
+            username: data[0].username,
+            email: data[0].email,
+            avatar: data[0].avatar
           });
         }
       })
       .catch(err => {
         throw err;
       });
+    getById("post", urlId)
+      .then(data => {
+        this.setState({
+          fetchInProgress: false,
+          posts: data
+        });
+      })
+      .catch(err => {
+        throw err;
+      });
   }
+
   render() {
     return (
       <Styles.Profile>
@@ -93,16 +104,17 @@ class Profile extends Component {
         </div>
         <div className="container">
           <div className="row">
-            {posts.map(post => {
-              return (
-                <div
-                  className="col-md-4 mt-3 mb-4 d-flex justify-content-center"
-                  key={post.id}
-                >
-                  <Post key={post.id} src={post.img} />
-                </div>
-              );
-            })}
+            {!this.state.fetchInProgress &&
+              this.state.posts.map(post => {
+                return (
+                  <div
+                    className="col-md-4 mt-3 mb-4 d-flex justify-content-center"
+                    key={post.id}
+                  >
+                    <Post key={post.id} src={post.img} />
+                  </div>
+                );
+              })}
           </div>
         </div>
       </Styles.Profile>
