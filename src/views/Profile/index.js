@@ -10,30 +10,6 @@ import Loader from "../../components/Loader";
 import { ProfileHeader } from "./ProfileHeader";
 import { Post } from "./Post";
 
-const posts = [
-  {
-    img:
-      "https://cdn.dribbble.com/users/730703/screenshots/3854196/james-gilleard-folio-illustration-gallery-1998-robocop-d.jpg"
-  },
-  {
-    img:
-      "https://i.pinimg.com/474x/3a/2f/4d/3a2f4dc97af33628afd0c7271a159c01--cyborg-girl-cyber-punk.jpg"
-  },
-  { img: "http://todofondos.com/bin/fondos/06/07/89d.jpg" },
-  {
-    img:
-      "https://cdn.dribbble.com/users/1008875/screenshots/4856783/bountyhunter.png"
-  },
-  {
-    img:
-      "https://cdn.dribbble.com/users/124813/screenshots/4100704/506_cyberpunk_head-floydworx.png"
-  },
-  {
-    img:
-      "https://cdn.dribbble.com/users/1008875/screenshots/4861020/future-farmer.png"
-  }
-];
-
 class Profile extends Component {
   constructor(props) {
     super(props);
