@@ -25,7 +25,30 @@ export const getById = (path, id) => {
       return res.json();
     })
     .then(data => {
-      return data[0];
+      return data;
+    })
+    .catch(err => {
+      throw err;
+    });
+};
+
+export const upload = (path, key, data) => {
+  let options = {
+    headers: {
+      Accept: "application/json"
+    },
+    method: "POST"
+  };
+
+  options.body = new FormData();
+  options.body.append(key, data);
+
+  return fetch(`${API_URL}/${path}`, options)
+    .then(res => {
+      return res.json();
+    })
+    .then(data => {
+      return data;
     })
     .catch(err => {
       throw err;
