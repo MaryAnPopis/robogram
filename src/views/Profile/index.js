@@ -98,6 +98,7 @@ class Profile extends Component {
                       src={post.img}
                       username={this.state.username}
                       description={post.description}
+                      avatar={this.state.avatar}
                     />
                   </div>
                 );
