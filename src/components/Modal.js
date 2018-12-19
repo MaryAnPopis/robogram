@@ -19,7 +19,13 @@ class Modal extends Component {
               <Style.Img src={this.props.src} alt="" />
             </Style.ImgHolder>
           </div>
-          <div className="col-md-4" style={Style.paddingRightLeft}>
+          <div className="col-md-4" style={Style.paddingLeft}>
+            <div style={Style.username}>
+              <Style.Avatar src={`${this.props.avatar}?size=50x50`} alt="" />
+              <span className="font-weight-bold">
+                @{this.props.username}
+              </span>{" "}
+            </div>
             <p className="mt-3 ">
               <span className="font-weight-bold">@{this.props.username}</span>{" "}
               <Style.Comment>{this.props.description} </Style.Comment>
@@ -36,7 +42,8 @@ Modal.propTypes = {
   handleClose: PropTypes.func,
   src: PropTypes.string,
   username: PropTypes.string,
-  description: PropTypes.string
+  description: PropTypes.string,
+  avatar: PropTypes.string
 };
 export default Modal;
 
@@ -55,9 +62,10 @@ Style.paddingLeft = {
   "padding-left": "0px"
 };
 
-Style.paddingRightLeft = {
-  "padding-left": "0px",
-  "padding-right": "0px"
+Style.username = {
+  "padding-bottom": "20px",
+  "padding-top": "20px",
+  "border-bottom": "1px solid rgb(167, 167, 167, 0.3)"
 };
 
 Style.Modal = styled.div`
@@ -99,4 +107,20 @@ Style.Comment = styled.p`
   margin: 0;
   padding: 0;
   display: inline;
+`;
+
+Style.Avatar = styled.img`
+  background: #ff6e7f; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #bfe9ff,
+    #ff6e7f
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #bfe9ff,
+    #ff6e7f
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  clip-path: circle(20px at center);
 `;

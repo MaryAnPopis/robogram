@@ -27,6 +27,7 @@ export class Post extends React.Component {
           src={this.props.src}
           username={this.props.username}
           description={this.props.description}
+          avatar={this.props.avatar}
         />
         <Styles.Button type="button" onClick={this.showModal.bind(this)}>
           <Styles.Img src={this.props.src} alt="" />
@@ -39,7 +40,8 @@ export class Post extends React.Component {
 Post.propTypes = {
   src: PropTypes.string,
   username: PropTypes.string,
-  description: PropTypes.string
+  description: PropTypes.string,
+  avatar: PropTypes.string
 };
 
 const Styles = {};
