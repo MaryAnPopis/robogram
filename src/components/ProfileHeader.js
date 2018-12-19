@@ -11,7 +11,11 @@ export const ProfileHeader = props => {
       <Styles.Row className="row">
         <div className="col-md-3" />
         <div className="col-md-3 mb-4">
-          <Styles.Img src={props.imgSrc} alt="" className="" />
+          <Styles.Img
+            src={`${props.imgSrc}?size=150x150`}
+            alt=""
+            className=""
+          />
         </div>
         <div className="col-md-6 mt-5">
           <Styles.Username>

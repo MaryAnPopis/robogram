@@ -87,7 +87,7 @@ class SignUp extends Component {
       username: usernameLowecase.toLowerCase(),
       password: this.state.password,
       email: this.state.email,
-      avatar: `https://robohash.org/${usernameLowecase}?size=150x150`
+      avatar: `https://robohash.org/${usernameLowecase}`
     };
     if (formValid(this.state)) {
       post("users", data)
