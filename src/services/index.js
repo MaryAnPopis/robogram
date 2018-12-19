@@ -19,6 +19,25 @@ export const post = (path, data) => {
     });
 };
 
+export const patch = (path, data) => {
+  return fetch(`${API_URL}/${path}`, {
+    method: "PATCH",
+    body: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json"
+    }
+  })
+    .then(res => {
+      return res.json();
+    })
+    .then(data => {
+      return data;
+    })
+    .catch(err => {
+      throw err;
+    });
+};
+
 export const getById = (path, id) => {
   return fetch(`${API_URL}/${path}/${id}`)
     .then(res => {
