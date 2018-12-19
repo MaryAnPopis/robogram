@@ -11,8 +11,17 @@ class Modal extends Component {
     return (
       <Style.Modal
         style={this.props.show ? Style.displayBlock : Style.displayNone}
-        onClick={this.props.handleClose}
       >
+        <button
+          type="button"
+          className="close mr-2"
+          aria-label="Close"
+          onClick={this.props.handleClose}
+        >
+          <Style.Close aria-hidden="true" className="h1">
+            &times;
+          </Style.Close>
+        </button>
         <Style.MainModal className="row">
           <div className="col-md-8" style={Style.paddingLeft}>
             <Style.ImgHolder>
@@ -74,9 +83,8 @@ Style.Modal = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.4);
   z-index: 10;
-  border-radius: 5px;
   overflow: scroll;
   overflow-x: hidden;
 `;
@@ -123,4 +131,9 @@ Style.Avatar = styled.img`
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
   clip-path: circle(20px at center);
+`;
+
+Style.Close = styled.span`
+  color: white;
+  font-weight: 600;
 `;
