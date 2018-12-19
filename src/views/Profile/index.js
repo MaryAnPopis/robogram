@@ -7,8 +7,8 @@ import globalVariables from "../../styles/variables";
 import { getById } from "../../services";
 import Navbar from "../../components/Navbar";
 import Loader from "../../components/Loader";
-import { ProfileHeader } from "./ProfileHeader";
-import { Post } from "./Post";
+import { ProfileHeader } from "../../components/ProfileHeader";
+import { Post } from "../../components/Post";
 import NoPosts from "../../components/NoPosts";
 
 class Profile extends Component {
@@ -69,8 +69,8 @@ class Profile extends Component {
           username={this.state.username}
           id={this.state.id}
         />
-        <div className="container">
-          <div className="col-md-12 d-flex justify-content-end mt-3 mr-4">
+        <Styles.PostContainer className="container p-0">
+          <div className="col-md-12 d-flex justify-content-end mt-3 ">
             <Styles.SecondaryButton
               to={`/post/${this.state.id}`}
               className="btn btn-outline-dark "
@@ -78,8 +78,8 @@ class Profile extends Component {
               Add post
             </Styles.SecondaryButton>
           </div>
-        </div>
-        <div className="container">
+        </Styles.PostContainer>
+        <Styles.PostContainer className="container">
           <div className="row">
             {this.state.posts.length == 0 ? (
               <div className="col-md-12 d-flex justify-content-center">
@@ -92,13 +92,18 @@ class Profile extends Component {
                     className="col-md-4 mt-3 mb-4 d-flex justify-content-center"
                     key={post.id}
                   >
-                    <Post key={post.id} src={post.img} />
+                    <Post
+                      key={post.id}
+                      src={post.img}
+                      username={this.state.username}
+                      description={post.description}
+                    />
                   </div>
                 );
               })
             )}
           </div>
-        </div>
+        </Styles.PostContainer>
       </Styles.Profile>
     );
   }
@@ -125,16 +130,20 @@ Styles.box = styled.div`
   justify-content: center;
 `;
 Styles.SecondaryButton = styled(Link)`
-  padding: 0.1rem 0.75rem !important;
+  padding: 0.1rem 0.3rem !important;
   border-color: ${globalVariables.darkblue} !important;
   border-width: 1.4px;
   color: ${globalVariables.darkblue};
   text-align: center;
-  font-weight: 400;
+  font-weight: 600;
   &:hover {
     background-color: ${globalVariables.darkblue};
   }
   &:focus {
     background-color: ${globalVariables.darkblue};
   }
+`;
+
+Styles.PostContainer = styled.div`
+  width: 935px;
 `;
