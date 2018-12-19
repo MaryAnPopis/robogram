@@ -68,6 +68,7 @@ class Profile extends Component {
           imgSrc={this.state.avatar}
           username={this.state.username}
           id={this.state.id}
+          posts={this.state.posts.length}
         />
         <Styles.PostContainer className="container p-0">
           <div className="col-md-12 d-flex justify-content-end mt-3 ">
@@ -80,7 +81,7 @@ class Profile extends Component {
           </div>
         </Styles.PostContainer>
         <Styles.PostContainer className="container">
-          <div className="row">
+          <div className="row mb-4">
             {this.state.posts.length == 0 ? (
               <div className="col-md-12 d-flex justify-content-center">
                 <NoPosts />

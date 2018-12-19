@@ -23,6 +23,9 @@ export const ProfileHeader = props => {
               Edit profile
             </Styles.SecondaryButton>{" "}
           </Styles.Username>
+          <p>
+            <strong>{props.posts}</strong> posts
+          </p>
         </div>
       </Styles.Row>
     </Styles.ProfileHeader>
@@ -32,7 +35,8 @@ export const ProfileHeader = props => {
 ProfileHeader.propTypes = {
   imgSrc: PropTypes.string,
   username: PropTypes.string,
-  id: PropTypes.string
+  id: PropTypes.string,
+  posts: PropTypes.number
 };
 
 const Styles = {};
