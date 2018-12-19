@@ -89,7 +89,7 @@ class Profile extends Component {
               this.state.posts.map(post => {
                 return (
                   <div
-                    className="col-md-4 mt-3 mb-4 d-flex justify-content-center"
+                    className="col-md-4 mt-3 mb-1 d-flex justify-content-center"
                     key={post.id}
                   >
                     <Post
