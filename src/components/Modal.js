@@ -27,7 +27,7 @@ class Modal extends Component {
               </span>{" "}
             </div>
             <p className="mt-3 ">
-              <span className="font-weight-bold">@{this.props.username}</span>{" "}
+              <span className="font-weight-bold">{this.props.username}</span>{" "}
               <Style.Comment>{this.props.description} </Style.Comment>
             </p>
           </div>
