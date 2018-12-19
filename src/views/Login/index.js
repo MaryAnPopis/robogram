@@ -1,16 +1,18 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 
 import globalVariables from "../../styles/variables";
 import { Label } from "../../components/Label";
 import { Button } from "../../components/Button";
 import AvatarLogin from "../../components/AvatarLogin";
+import { post } from "../../services/index";
 
 class Login extends Component {
   constructor(props) {
     super(props);
-    this.state = { username: "", password: "" };
+    this.state = { username: "", password: "", redirect: false, id: "" };
   }
 
   handleChange(e) {
@@ -21,11 +23,32 @@ class Login extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.setState({ username: "", password: "" });
+    const data = {
+      username: this.state.username,
+      password: this.state.password
+    };
+    post("users/autho", data)
+      .then(data => {
+        data.found
+          ? this.setState({ redirect: true, id: data.id })
+          : toast.error("🤖 Username or password is invalid!", {
+              position: "bottom-right",
+              autoClose: 5000
+            });
+      })
+      .catch(err => {
+        throw err;
+      });
   }
   render() {
+    const redirect = this.state.redirect;
+
+    if (redirect) {
+      return <Redirect to={`/profile/${this.state.id}`} />;
+    }
     return (
       <Styles.Login>
+        <ToastContainer />
         <AvatarLogin />
         <Styles.Title className="text-center mt-3">Welcome back!</Styles.Title>
         <Styles.Subtitle className="text-center mb-3">
